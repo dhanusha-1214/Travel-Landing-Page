@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanderlust Travel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Wanderlust</h1>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search destinations...">
+  <button onclick="searchDestinations()">Search</button>
+</section>
+
+    <section class="hero">
+      <h2>Explore the World with Us</h2>
+      <p>Your adventure starts here</p>
+    </section>
+  </header>
+
+  <main>
+    <section id="destinations" class="destinations">
+      <h2>Popular Destinations</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://res.cloudinary.com/dtljonz0f/image/upload/c_auto,ar_4:3,w_3840,g_auto/f_auto/q_auto/v1/gc-v1/paris/shutterstock_1899827659%20edit?_a=BAVAZGE70" alt="Paris" />
+          <h3>Paris</h3>
+        </div>
+         <div class="card">
+          <img src="https://www.planetware.com/wpimages/2019/10/switzerland-in-pictures-most-beautiful-places-brienz.jpg" alt="Switzerland">
+          <h3>Switzerland</h3>
+        </div>
+         <div class="card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdo3rhmvq2jvTSkm8sJCp2t9AIQOePDyZMbw&s" alt="vietnam">
+          <h3>Vietnam</h3>
+        </div>
+        <div class="card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK9E6uZyNFHKYigqIDkkpk8d5YIOOXREm-gw&s" alt="Bali">
+          <h3>Bali</h3>
+        </div>
+        <div class="card">
+          <img src="https://t4.ftcdn.net/jpg/01/14/69/25/360_F_114692553_AlsqALliXH8n9fa7picIvlPCxRBa78K7.jpg" alt="Italy">
+          <h3>Italy</h3>
+        </div>
+        <div class="card">
+          <img src="https://images.pexels.com/photos/1796715/pexels-photo-1796715.jpeg?cs=srgb&dl=pexels-chaitaastic-1796715.jpg&fm=jpg" alt="London">
+          <h3>London</h3>
+        </div>
+        <div class="card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8tjfAVLfFs5wnCZzmOqVybrJxA1HgXxUntA&s" alt="Japan">
+          <h3>Japan</h3>
+        </div>
+        <div class="card">
+          <img src="https://media.istockphoto.com/id/1137568153/photo/cherry-blossoms-in-spring-seoul-in-korea.jpg?s=612x612&w=0&k=20&c=SP8py_0WQrn4mMFdrd0bvk7-MfRWxJl6C3AsHxJq8ck=" alt="South Korea">
+          <h3>South Korea</h3>
+        </div>
+        <div class="card">
+          <img src="https://t4.ftcdn.net/jpg/02/78/13/67/360_F_278136770_gtY679gEBnbKWhEjX40n7XmoMxcEt76P.jpg" alt="America">
+          <h3>America</h3>
+        </div>
+        <div class="card">
+          <img src="https://images.pexels.com/photos/1239162/pexels-photo-1239162.jpeg?cs=srgb&dl=pexels-mikel-1239162.jpg&fm=jpg" alt="new york">
+          <h3>New York</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="carousel">
+        <p id="testimonial-text">"Wanderlust made my dream vacation come true!" – Priya R.</p>
+        <button onclick="nextTestimonial()">Next</button>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Wanderlust Travel. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Contact Form Validation
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email.includes("@") || !message) {
+        alert("Please fill all fields with a valid email.");
+        e.preventDefault();
+      } else {
+        alert("Thank you for contacting us, " + name + "!");
+      }
+    });
+    function searchDestinations() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll("#destinationGrid .card");
+  cards.forEach(card => {
+    const title = card.querySelector("h3").textContent.toLowerCase();
+    card.style.display = title.includes(input) ? "block" : "none";
+  });
+}
+
+
+    // Testimonial Carousel
+    const testimonials = [
+      '"Wanderlust made my dream vacation come true!" – Priya R.',
+      '"Exceptional service and breathtaking views!" – Michael T.',
+      '"Highly recommend for solo travelers." – Ananya D.'
+    ];
+    let index = 0;
+    function nextTestimonial() {
+      index = (index + 1) % testimonials.length;
+      document.getElementById("testimonial-text").textContent = testimonials[index];
+    }
+    window.onscroll = function () {
+  document.getElementById("topBtn").style.display = window.scrollY > 300 ? "block" : "none";
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+  </script>
+  <button id="topBtn" onclick="scrollToTop()">&#8679;</button>
+</body>
+</html>
